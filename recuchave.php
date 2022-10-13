@@ -108,8 +108,7 @@
                 </div>
             </form>
         </div>
-<?php
-?>
+
     </body>
 </html>
 
