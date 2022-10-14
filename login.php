@@ -146,8 +146,8 @@
         <div id="login">
             <h2>Faça login, e começe a adquirir conhecimento hoje!</h2>
             <form method="POST" action="loginins.php">
-                <label for="user">Usuário: </label>
-                <input class="inp" type="text" name="email" required minlength="5" placeholder="Digite aqui seu usuário"><br>
+                <label for="user">E-mail: </label>
+                <input class="inp" type="email" name="email" required minlength="5" placeholder="Digite aqui seu email(Exemplo: email@gmail.com)"><br>
                 <div class="inpsenha">
                 <label for="senha">Senha: </label>
                 <input class="inp" type="password" name="senha" required minlength="8" placeholder="Digite aqui sua senha"><br>

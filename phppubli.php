@@ -4,7 +4,9 @@ session_start();
 
 $titulo = $_POST['titulo'];
 
-$nomeus = $_SESSION['email'];
+$nomeus = $_SESSION['nome'];
+
+$fotous = $_SESSION['foto'];
 
 $pubpri = $_POST['pub/pri'];
 
@@ -19,8 +21,6 @@ $conteudoPartitura = base64_encode(file_get_contents($_FILES['partitura']['tmp_n
 
 $conteudoCifra = base64_encode(file_get_contents($_FILES['cifra']['tmp_name']));
 
-$cifra = $_FILES['cifra']['tmp_name'];
-
 $editor_data = $_POST[ 'content' ];
 
 $sessionStart = 1;
@@ -33,7 +33,7 @@ if($conexao)
 else
  echo "Error";
 
-$sql = "INSERT INTO Publicacao (titulo, conteudo, autor, visu, filtro, datee, video, partitura, cifra) VALUES ('$titulo', '$editor_data', '$nomeus', '$pubpri', '$fil', '$data','$video', '$conteudoPartitura', '$conteudoCifra');";
+$sql = "INSERT INTO Publicacao (titulo, conteudo, autor, foto_autor, visu, filtro, datee, video, partitura, cifra) VALUES ('$titulo', '$editor_data', '$nomeus', '$fotous', '$pubpri', '$fil', '$data','$video', '$conteudoPartitura', '$conteudoCifra');";
 
 mysqli_query($conexao, $sql);
 

@@ -4,7 +4,7 @@ session_start();
 
 $titulo = $_GET['titulo'];
 
-$nomeus = $_SESSION['email'];
+$nomeus = $_SESSION['nome'];
 
 $conexao = mysqli_connect("localhost", "root", "", "localhost");
 
@@ -17,7 +17,6 @@ else
 {
 echo "Error";
 }
-
 
 $resultado = "SELECT * from favoritas WHERE titulo='$titulo' AND user='$nomeus'";
 

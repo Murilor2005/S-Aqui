@@ -98,13 +98,13 @@
     <body>
         <div id="login">
             <h2>Recuperação de senha</h2>
-            <form  method="POST" action="puxsenha.php">
-                <label for="user">Insira a sua palavra-chave: </label>
-                <input class="inp" type="text" name="pchave" required placeholder="Digite aqui sua palavra chave para recuperação!">
+            <form  method="POST" action="enviaemail.php">
+                <label for="user">Insira o seu email cadastrado: </label>
+                <input class="inp" type="text" name="email" required placeholder="Digite aqui seu email!">
                 <div id="cadastro">
-                <input type="submit" name="botao" value="Recuperar senha">
+                <input type="submit" name="botao" value="Enviar e-mail">
     
-                    <a href="recuchave.php" id="forgot-pass">Clique aqui para receber a dica!</a>
+                    <a href="login.php" id="forgot-pass">Clique aqui para retornar ao login!</a>
                 </div>
             </form>
         </div>

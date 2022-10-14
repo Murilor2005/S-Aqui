@@ -117,28 +117,19 @@ session_start();
 <body>
     <div id="cadastro">
         <h2>Cadastre-se</h2>
-        <form name="cadastro" method="POST" action="cadastroins.php">
-            <label for="user">Usuário: </label>
-            <input class="inp" type="text" name="email" required minlength="5" placeholder="Digite aqui seu nome e sobrenome"><br>
+        <form name="cadastro" enctype="multipart/form-data" method="POST" action="cadastroins.php">
+            <label for="user">Nome: </label>
+            <input class="inp" type="name" name="nome" required minlength="5" placeholder="Digite aqui seu nome e sobrenome"><br>
+            <label for="user">E-mail: </label>
+            <input class="inp" type="email" name="email" placeholder="Digite aqui a sua palavra-chave!" required><br>
             <label for="user">Senha: </label>
             <input class="inp" type="password" name="senha" required minlength="8" placeholder="Digite aqui sua senha(Mínimo 8 digitos)"><br>
-            <label for="user">Insira uma palavra-chave: </label>
-            <input class="inp" type="text" name="pch" placeholder="Digite aqui a sua palavra-chave!"><br>
-            <label for="user">Insira uma dica para recuperar a palavra-chave: </label>
-            <input class="inp" type="text" name="dica" placeholder="Digite aqui a dica!"><br>
+            <label for="user">Insira uma foto de perfil: </label>
+            <input class="inp" required type="file" name="foto" accept="image/*" placeholder="Digite aqui a dica!"><br>
             <input type="submit" name="botao" value="Concluir cadastro">
             <p>Já possui cadastro?</p>
             <a href="login.php" id="forgot-pass">Clique aqui para realizar o login</a>
         </form>
-        <?php
-
-        if (isset($_SESSION["msg"])) {
-            echo '<div><label class="erro">Possui campos em branco!</label></div>';
-
-            $_SESSION["msg"] = null;
-        }
-        ?>
-
 </body>
 
 </html>

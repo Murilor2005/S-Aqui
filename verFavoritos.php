@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['nome'])) {
     header("location: login.php");
 }
 ?>
@@ -27,9 +27,6 @@ if (!isset($_SESSION['email'])) {
         text-transform: uppercase;
     }
 
-    a:hover {
-        background-color: white;
-    }
 
     /*logo*/
     #logo {
@@ -254,7 +251,8 @@ if (!isset($_SESSION['email'])) {
         padding-top: 0%;
         border-radius: 10px;
         border-color: rgb(130, 95, 60);
-        font-size: 60%;
+        font-size: medium;
+        font-family: 'verdana';
         color: white;
         font-size: large;
         margin-bottom: 50px;
@@ -291,6 +289,10 @@ if (!isset($_SESSION['email'])) {
         font-family: 'verdana';
         margin-left: 43%;
     }
+    .img
+    {
+        border-radius: 100%;
+    }
 </style>
 
 <body>
@@ -319,10 +321,12 @@ if (!isset($_SESSION['email'])) {
         </nav>
         <nav>
             <?php
-            $nomeus = $_SESSION['email'];
+            $nomeus = $_SESSION['nome'];
+
+            $fotous = $_SESSION['foto'];
 
             echo "<input type='checkbox' id='check'>
-                <label for='check'><a>Você acessou como $nomeus</a></label>";
+                <label for='check'><a>$nomeus</a><img class='img' width='50px' src='data:image/jpeg;base64,$fotous' /></label>";
             ?>
             <ul id="perfil">
                 <li><a href="verFavoritos.php">Meus favoritos ❣</a></li>
@@ -357,7 +361,7 @@ if (!isset($_SESSION['email'])) {
 
         $conexao = mysqli_connect("localhost", "root", "", "localhost");
 
-        $sql = "SELECT * FROM publicacao p inner join favoritas f on p.titulo = f.titulo WHERE f.user='$nomeus' ORDER BY datee DESC";
+        $sql = "SELECT * FROM publicacao p inner join favoritas f on p.titulo = f.titulo WHERE f.user='$nomeus' ";
 
         $resultado = mysqli_query($conexao, $sql);
 

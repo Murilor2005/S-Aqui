@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['nome'])) {
     header("location: login.php");
 }
 ?>
@@ -279,6 +279,10 @@ if (!isset($_SESSION['email'])) {
     .boxpai {
         flex: 50%;
     }
+    .img
+    {
+        border-radius: 100%;
+    }
 </style>
 
 <body>
@@ -307,10 +311,11 @@ if (!isset($_SESSION['email'])) {
         </nav>
         <nav>
             <?php
-            $nomeus = $_SESSION['email'];
+            $nomeus = $_SESSION['nome'];
+            $fotous = $_SESSION['foto'];
 
             echo "<input type='checkbox' id='check'>
-                <label for='check'><a>Você acessou como $nomeus</a></label>";
+                <label for='check'><a>Você acessou como $nomeus</a><img class='img' width='40px' src='data:image/jpeg;base64,$fotous' /></label>";
             ?>
             <ul id="perfil">
                 <li><a href="verFavoritos.php">Meus favoritos ❣</a></li>

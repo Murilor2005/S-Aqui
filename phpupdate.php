@@ -8,7 +8,7 @@ $stitulo = $_SESSION['titulo'];
 
 $video = $_POST['video'];
 
-$nomeus = $_SESSION['email'];
+$nomeus = $_SESSION['nome'];
 
 $pubpri = $_POST['pub/pri'];
 
@@ -39,5 +39,3 @@ $sql = "UPDATE publicacao SET titulo='$titulo', conteudo='$editor_data', visu='$
     mysqli_close($conexao);
 
     header("location:inicio.php");
-
-?>

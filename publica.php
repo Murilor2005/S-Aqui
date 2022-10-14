@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['nome'])) {
     header("location: login.php");
 }
 ?>
@@ -161,6 +161,7 @@ if (!isset($_SESSION['email'])) {
         background-color: #96541e;
         visibility: hidden;
         overflow-y: hidden;
+        z-index: 1;
         border-color: black;
     }
 
@@ -234,7 +235,6 @@ if (!isset($_SESSION['email'])) {
 
     main {
         display: flex;
-
         margin-top: 2.5%;
         Flex-wrap: wrap;
     }
@@ -253,7 +253,8 @@ if (!isset($_SESSION['email'])) {
         border-color: rgb(130, 95, 60);
         font-size: 60%;
         color: white;
-        font-size: large;
+        font-size: medium;
+        font-family: 'verdana';
         margin-bottom: 50px;
         position: relative;
     }
@@ -277,6 +278,11 @@ if (!isset($_SESSION['email'])) {
 
     .boxpai {
         flex: 50%;
+    }
+
+    .img
+    {
+        border-radius: 100%;
     }
 </style>
 
@@ -306,10 +312,22 @@ if (!isset($_SESSION['email'])) {
         </nav>
         <nav>
             <?php
-            $nomeus = $_SESSION['email'];
+            $nomeus = $_SESSION['nome'];
+
+            $conexao = mysqli_connect("localhost", "root", "", "localhost");
+
+            $sql = "SELECT * FROM cadastros WHERE nome='$nomeus'";
+
+            $resultado = mysqli_query($conexao, $sql);
+
+        while ($linha = mysqli_fetch_assoc($resultado)) {
+            $_SESSION['foto'] = $linha['foto_perfil'];
+        }
+
+        $fotous = $_SESSION['foto'];
 
             echo "<input type='checkbox' id='check'>
-                <label for='check'><a>Você acessou como $nomeus</a></label>";
+                <label for='check'><a>$nomeus</a><img class='img' width='50px' src='data:image/jpeg;base64,$fotous' /></label>";
             ?>
             <ul id="perfil">
                 <li><a href="verFavoritos.php">Meus favoritos ❣</a></li>
@@ -361,11 +379,11 @@ if (!isset($_SESSION['email'])) {
 
             echo "<form method='POST' action='phpfav.php?titulo=" . $linha['titulo'] . "'><b><i> <input class='botao_fav' type='submit' value='Favoritar'</i></b></form><br>";
 
-            echo "<br><label><b><i>Categoria: <u> " . $linha['filtro'] . "</u></i></b><br><br></label>";
+            echo "<br><label><b><i>Categoria:  " . $linha['filtro'] . "</i></b><br><br></label>";
 
-            echo "<label><b><i>Publicado por<u> " . $linha["autor"] . "</u></i></b></label>";
+            echo "<label><b><i>Publicado por " . $linha["autor"] . "</i></b></label>";
 
-            echo "<label><b><i> em <u>" . $linha["datee"] . "</u></i></b></label><br></div></div>";
+            echo "<label><b><i> em " . $linha["datee"] . "</i></b></label><br></div></div>";
         }
 
 

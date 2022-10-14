@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['nome'])) {
     header("location: login.php");
 }
 ?>
@@ -227,6 +227,7 @@ if (!isset($_SESSION['email'])) {
         transition: .5s;
         list-style: none;
         right: 5px;
+        z-index: 1;
         background-color: #96541e;
         visibility: hidden;
         overflow-y: hidden;
@@ -372,6 +373,10 @@ if (!isset($_SESSION['email'])) {
         left: 41.5%;
         width: fit-content;
     }
+    .img
+    {
+        border-radius: 100%;
+    }
 </style>
 
 <body>
@@ -403,10 +408,11 @@ if (!isset($_SESSION['email'])) {
         <nav>
             <?php
             $sessionStart = 1;
-            $nomeus = $_SESSION['email'];
+            $fotous = $_SESSION['foto'];
+            $nomeus = $_SESSION['nome'];
 
-            echo "<input  type='checkbox' id='check'>
-                <label for='check'><a id='nome'>Você acessou como $nomeus</a></label>";
+            echo "<input type='checkbox' id='check'>
+                <label for='check'><a>$nomeus</a><img class='img' width='40px' src='data:image/jpeg;base64,$fotous' /></label>";
             ?>
             <ul id="perfil">
                 <li><a href="verFavoritos.php">Meus favoritos ❣</a></li>

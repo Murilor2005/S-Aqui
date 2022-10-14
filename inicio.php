@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['nome'])) {
     header("location: login.php");
 }
 ?>
@@ -11,7 +11,7 @@ if (!isset($_SESSION['email'])) {
 <head>
     <title>Minhas Publicações</title>
     <script>
-         function msg() {
+        function msg() {
             window.confirm("Você tem certeza que deseja excluir?\nSe Sim, pressione (Ok)\n Se Não, pressione (Cancelar)");
 
             if (confirm("Para excluir pressione (Ok)\nPara Cancelar pressione (Cancelar)")) {
@@ -38,7 +38,7 @@ if (!isset($_SESSION['email'])) {
         text-transform: uppercase;
     }
 
-   
+
 
     /*logo*/
     #logo {
@@ -169,6 +169,7 @@ if (!isset($_SESSION['email'])) {
         height: fit-content;
         transition: .5s;
         list-style: none;
+        z-index: 1;
         right: 5px;
         background-color: #96541e;
         visibility: hidden;
@@ -265,9 +266,10 @@ if (!isset($_SESSION['email'])) {
         border-color: rgb(130, 95, 60);
         font-size: 60%;
         color: white;
-        font-size: large;
+        font-size: medium;
         margin-bottom: 50px;
         position: relative;
+        font-family: 'verdana';
     }
 
     .tit-page {
@@ -289,6 +291,10 @@ if (!isset($_SESSION['email'])) {
 
     .boxpai {
         flex: 50%;
+    }
+    .img
+    {
+        border-radius: 100%;
     }
 </style>
 
@@ -318,10 +324,11 @@ if (!isset($_SESSION['email'])) {
         </nav>
         <nav>
             <?php
-            $nomeus = $_SESSION['email'];
+            $nomeus = $_SESSION['nome'];
+            $fotous = $_SESSION['foto'];
 
             echo "<input type='checkbox' id='check'>
-                <label for='check'><a>Você acessou como $nomeus</a></label>";
+            <label for='check'><a>$nomeus</a><img class='img' width='50px' src='data:image/jpeg;base64,$fotous' /></label>";
             ?>
             <ul id="perfil">
                 <li><a href="verFavoritos.php">Meus favoritos ❣</a></li>

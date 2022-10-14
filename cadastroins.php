@@ -1,26 +1,14 @@
 <?php
 session_start();
 
+$nome = $_POST['nome'];
 $email = $_POST['email'];
 $senha = $_POST['senha'];
-$pchave = $_POST['pch'];
-$dica = $_POST['dica'];
 
 $senhacrip = base64_encode($senha);
 
-if(empty($_POST['email']) || empty($_POST['senha']) || empty($_POST['pch']) || empty($_POST['dica'])) 
-{
+$fotop = base64_encode(file_get_contents($_FILES['foto']['tmp_name']));
 
-    $_SESSION['msg'] = "Erro";
-    $_SESSION['start'] = $sessionStart;
-    
-    unset ($_SESSION['email']);
-    $sessionStart = 2;
-    header("location:cadastro.php");
-
-}
-
-else{
 
 $sessionStart = 1;
 
@@ -32,26 +20,12 @@ if($conexao)
 else
  echo "Error";
 
- $resultado = "SELECT * from Cadastros WHERE email='$email'";
-
-$query = mysqli_query($conexao, $resultado);
-
-$row_cnt = mysqli_num_rows($query);
-
-if($row_cnt == 0)
-{
-    $sql = "INSERT INTO Cadastros(email, senha, pchave, dica) VALUES ('$email', '$senhacrip', '$pchave', '$dica')";
+ 
+    $sql = "INSERT INTO cadastros(nome, email, senha, foto_perfil) VALUES ('$nome','$email', '$senhacrip', '$fotop')";
       
     mysqli_query($conexao, $sql);
 
     mysqli_close($conexao);
 
     header("location:verFavoritos.php");
-}
 
-else if($row_cnt >= 1)
-{
-    echo"<br><br>Já foi adicionada!";
-    header("location:existeuser.php");
-}
-}

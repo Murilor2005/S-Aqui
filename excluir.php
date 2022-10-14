@@ -4,7 +4,7 @@ session_start();
 
 $titulo = $_GET['titulo'];
 
-$nomeus = $_SESSION['email'];
+$nomeus = $_SESSION['nome'];
 
 $conexao = mysqli_connect("localhost", "root", "", "localhost");
 
@@ -16,7 +16,7 @@ if ($conexao) {
     echo "Error";
 }
 
-$sql = "DELETE FROM publicacao WHERE titulo='$titulo'";
+$sql = "DELETE FROM publicacao WHERE titulo='$titulo' AND autor='$nomeus'";
 
 
 mysqli_query($conexao, $sql);

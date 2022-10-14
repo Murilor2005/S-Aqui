@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['nome'])) {
     header("location: login.php");
 }
 ?>
@@ -248,8 +248,9 @@ if (!isset($_SESSION['email'])) {
         border-color: rgb(130, 95, 60);
         font-size: 60%;
         color: white;
-        font-size: large;
+        font-size: medium;
         margin-bottom: 50px;
+        font-family: 'verdana';
     }
 
     .tit-page {
@@ -266,6 +267,10 @@ if (!isset($_SESSION['email'])) {
 
     .video {
         margin-left: 22%;
+    }
+
+    .img {
+        border-radius: 50%;
     }
 </style>
 
@@ -295,10 +300,12 @@ if (!isset($_SESSION['email'])) {
         </nav>
         <nav>
             <?php
-            $nomeus = $_SESSION['email'];
+            $nomeus = $_SESSION['nome'];
+            $fotous = $_SESSION['foto'];
 
             echo "<input type='checkbox' id='check'>
-                <label for='check'><a>Você acessou como $nomeus</a></label>";
+                <label for='check'><a>Você acessou como $nomeus</a><img class='img' width='40px' src='data:image/jpeg;base64,$fotous' /></label>";
+            
             ?>
             <ul id="perfil">
                 <li><a href="verFavoritos.php">Meus favoritos ❣</a></li>
@@ -331,7 +338,7 @@ if (!isset($_SESSION['email'])) {
 
     $conexao = mysqli_connect("localhost", "root", "", "localhost");
 
-    $sql = "SELECT * FROM publicacao WHERE visu='Pública' AND titulo='$titulo' ORDER BY datee DESC ";
+    $sql = "SELECT * FROM publicacao WHERE titulo='$titulo' ORDER BY datee DESC ";
 
     $resultado = mysqli_query($conexao, $sql);
 
@@ -357,13 +364,13 @@ if (!isset($_SESSION['email'])) {
 
         echo "<form method='POST' action='phpfav.php?titulo=" . $linha['titulo'] . "'><b><i> <input class='botao_fav' type='submit' value='Favoritar'</i></b></form>";
 
-        echo "<br><label><b><i>Categoria: <u> " . $linha['filtro'] . "</u></i></b><br><br></label>";
+        echo "<br><label><b><i>Categoria:  " . $linha['filtro'] . "</i></b><br></label>";
 
-        echo "<label><b><i>Publicado por<u> " . $linha["autor"] . "</u></i></b></label>";
+        echo "<label><b><i>Publicado por " . $linha["autor"] . "</i></b>  <img class='img' width='50px' src='data:image/jpeg;base64," . $linha['foto_autor'] ."' /></label>";
 
-        echo "<label><b><i> em <u>" . $linha["datee"] . "</u></i></b></label><br></div>";
+        echo "<label><b><br><i><br> Em " . $linha["datee"] . "</i></b></label><br></div>";
+    
     }
-
 
     mysqli_close($conexao);
 
