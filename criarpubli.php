@@ -387,6 +387,18 @@ if (!isset($_SESSION['nome'])) {
     {
         border-radius: 100%;
     }
+    .but{
+        background-color: #f4e19b;
+        left:20%;
+        border-color:#3d150b;
+        border-radius: 30%;
+    }
+
+    .but:hover{
+        transition: 0.7s;
+        background-color:#96541e;
+        border-color: #f4e19b;
+    }
 </style>
 
 <body>
@@ -409,7 +421,7 @@ if (!isset($_SESSION['nome'])) {
             <form method="POST" action="buscar.php">
                 <ul id="pesquisa">
                     <li><a href="#"><input type="text" name="pesquisa" placeholder="Qual publicação você deseja buscar?"></a></li>
-                    <li><a href="#"><input type="submit" name="botaoPesq" value="Buscar"></a></li>
+                    <li><a href="#"><button type="submit" class="but" name="botaoPesq"><img src="https://img.icons8.com/pastel-glyph/32/000000/search--v1.png" /></button></a></li>
                 </ul>
             </form>
         </nav>

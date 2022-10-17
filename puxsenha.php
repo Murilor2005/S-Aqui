@@ -119,26 +119,23 @@ session_start();
 
 
         <?php
-         
-        $pchave = $_POST['pchave'];
 
-        $_SESSION["pchave"] = $pchave;
 
         $conexao = mysqli_connect("localhost", "root", "", "localhost");
 
 
-        if ($sql = "pchave='$pchave'") {
 
-            echo "<form action='phpupsenha.php' method='POST'> Insira a sua nova senha:<input type='password' required name='senhanov'><input type='submit' value='Cadastrar senha'></form>";
-                } else {
-            echo '<div class="erro"> Palavra-Chave incorreta</div>';
-        }
 
-     
+        echo "<form action='phpupsenha.php' method='POST'> Insira a sua nova senha:<input type='password' required name='senhanov'><input type='submit' value='Cadastrar senha'></form>";
+
+
+
+
+
         mysqli_close($conexao);
         ?>
 
-       
+
         <a href="login.php" id="forgot-pass">Clique aqui para retornar ao login!</a>
     </div>
 </body>

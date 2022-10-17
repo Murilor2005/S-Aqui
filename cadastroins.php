@@ -14,18 +14,27 @@ $sessionStart = 1;
 
 $conexao = mysqli_connect("localhost", "root", "", "localhost");
 
-if($conexao)
- echo "Conexão Estabelecida";
+if ($conexao)
+   echo "Conexão Estabelecida";
 
 else
- echo "Error";
+   echo "Error";
 
- 
-    $sql = "INSERT INTO cadastros(nome, email, senha, foto_perfil) VALUES ('$nome','$email', '$senhacrip', '$fotop')";
-      
-    mysqli_query($conexao, $sql);
+$resultado = "SELECT * from cadastros WHERE nome='$nome'";
 
-    mysqli_close($conexao);
+$query = mysqli_query($conexao, $resultado);
 
-    header("location:verFavoritos.php");
+$row_cnt = mysqli_num_rows($query);
 
+if ($row_cnt == 0) {
+   $sql = "INSERT INTO cadastros(nome, email, senha, foto_perfil) VALUES ('$nome','$email', '$senhacrip', '$fotop')";
+
+   mysqli_query($conexao, $sql);
+
+   mysqli_close($conexao);
+
+   header("location:login.php");
+} else if ($row_cnt >= 1) {
+   echo "<br><br>Já foi adicionada!";
+   header("location:existeuser.php");
+}

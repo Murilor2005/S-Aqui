@@ -25,6 +25,6 @@ echo "Error";
 
     mysqli_close($conexao);
 
-    header("location:publica.php");
+    header("location:verFavoritos.php");
 
 ?>

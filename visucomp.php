@@ -272,6 +272,19 @@ if (!isset($_SESSION['nome'])) {
     .img {
         border-radius: 50%;
     }
+
+    .but {
+        background-color: #f4e19b;
+        left: 20%;
+        border-color: #3d150b;
+        border-radius: 30%;
+    }
+
+    .but:hover {
+        transition: 0.7s;
+        background-color: #96541e;
+        border-color: #f4e19b;
+    }
 </style>
 
 <body>
@@ -294,7 +307,7 @@ if (!isset($_SESSION['nome'])) {
             <form method="POST" action="buscar.php">
                 <ul id="pesquisa">
                     <li><a href="#"><input type="text" name="pesquisa" placeholder="Qual publicação você deseja buscar?"></a></li>
-                    <li><a href="#"><input type="submit" name="botaoPesq" value="Buscar"></a></li>
+                    <li><a href="#"><button type="submit" class="but" name="botaoPesq"><img src="https://img.icons8.com/pastel-glyph/32/000000/search--v1.png" /></button></a></li>
                 </ul>
             </form>
         </nav>
@@ -305,7 +318,7 @@ if (!isset($_SESSION['nome'])) {
 
             echo "<input type='checkbox' id='check'>
                 <label for='check'><a>Você acessou como $nomeus</a><img class='img' width='40px' src='data:image/jpeg;base64,$fotous' /></label>";
-            
+
             ?>
             <ul id="perfil">
                 <li><a href="verFavoritos.php">Meus favoritos ❣</a></li>
@@ -338,7 +351,7 @@ if (!isset($_SESSION['nome'])) {
 
     $conexao = mysqli_connect("localhost", "root", "", "localhost");
 
-    $sql = "SELECT * FROM publicacao WHERE titulo='$titulo' ORDER BY datee DESC ";
+    $sql = "SELECT * FROM publicacao WHERE titulo='$titulo' AND visu='Pública' OR (titulo='$titulo' AND visu='Privada' AND autor='$nomeus') ORDER BY datee DESC ";
 
     $resultado = mysqli_query($conexao, $sql);
 
@@ -362,15 +375,15 @@ if (!isset($_SESSION['nome'])) {
 
         echo "<br><iframe height='300' width='650' src='data:application/pdf;base64," . $linha['cifra'] . "' type='application/pdf'></iframe></div>";
 
-        echo "<form method='POST' action='phpfav.php?titulo=" . $linha['titulo'] . "'><b><i> <input class='botao_fav' type='submit' value='Favoritar'</i></b></form>";
+        echo "<form method='POST' action='phpfav.php?titulo=" . $linha['titulo'] . "'><b><i> <button class='but'type='submit' ><img src='https://img.icons8.com/ios/30/000000/favorites.png'/></button></i></b></form><br>";
 
         echo "<br><label><b><i>Categoria:  " . $linha['filtro'] . "</i></b><br></label>";
 
-        echo "<label><b><i>Publicado por " . $linha["autor"] . "</i></b>  <img class='img' width='50px' src='data:image/jpeg;base64," . $linha['foto_autor'] ."' /></label>";
+        echo "<label><b><i>Publicado por " . $linha["autor"] . "</i></b>  <img class='img' width='50px' src='data:image/jpeg;base64," . $linha['foto_autor'] . "' /></label>";
 
-        echo "<label><b><br><i><br> Em " . $linha["datee"] . "</i></b></label><br></div>";
-    
+        echo "<label><b><br><i><br> Em " . $linha["datee"] . "</i></b></label> <a href='publica.php'> <button class='but'type='submit'><img src='https://img.icons8.com/ios-filled/30/000000/left3.png'/></button></a></i></b><br></div>";
     }
+
 
     mysqli_close($conexao);
 

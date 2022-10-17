@@ -280,9 +280,21 @@ if (!isset($_SESSION['nome'])) {
         flex: 50%;
     }
 
-    .img
-    {
+    .img {
         border-radius: 100%;
+    }
+
+    .but {
+        background-color: #f4e19b;
+        left: 20%;
+        border-color: #96541e;
+        border-radius: 30%;
+    }
+
+    .but:hover {
+        transition: 0.7s;
+        background-color: #96541e;
+        border-color: #f4e19b;
     }
 </style>
 
@@ -306,7 +318,7 @@ if (!isset($_SESSION['nome'])) {
             <form method="POST" action="buscar.php">
                 <ul id="pesquisa">
                     <li><a href="#"><input type="text" name="pesquisa" placeholder="Qual publicação você deseja buscar?"></a></li>
-                    <li><a href="#"><input type="submit" name="botaoPesq" value="Buscar"></a></li>
+                    <li><a href="#"><button type="submit" class="but" name="botaoPesq"><img src="https://img.icons8.com/pastel-glyph/32/000000/search--v1.png" /></button></a></li>
                 </ul>
             </form>
         </nav>
@@ -320,11 +332,11 @@ if (!isset($_SESSION['nome'])) {
 
             $resultado = mysqli_query($conexao, $sql);
 
-        while ($linha = mysqli_fetch_assoc($resultado)) {
-            $_SESSION['foto'] = $linha['foto_perfil'];
-        }
+            while ($linha = mysqli_fetch_assoc($resultado)) {
+                $_SESSION['foto'] = $linha['foto_perfil'];
+            }
 
-        $fotous = $_SESSION['foto'];
+            $fotous = $_SESSION['foto'];
 
             echo "<input type='checkbox' id='check'>
                 <label for='check'><a>$nomeus</a><img class='img' width='50px' src='data:image/jpeg;base64,$fotous' /></label>";
@@ -362,7 +374,7 @@ if (!isset($_SESSION['nome'])) {
 
         $conexao = mysqli_connect("localhost", "root", "", "localhost");
 
-        $sql = "SELECT * FROM publicacao WHERE visu='Pública' ORDER BY datee DESC ";
+        $sql = "SELECT * FROM publicacao WHERE visu='Pública' ORDER BY id DESC ";
 
         $resultado = mysqli_query($conexao, $sql);
 
@@ -375,9 +387,9 @@ if (!isset($_SESSION['nome'])) {
 
                 . html_entity_decode($linha["conteudo"]) . '';
 
-            echo "<form class='alinhalado' method='POST' action='visucomp.php?titulo=" . $linha['titulo'] . "'><b><i> <input class='botao_fav' type='submit' value='Ver mais'</i></b></form>";
+            echo "<form class='alinhalado' method='POST' action='visucomp.php?titulo=" . $linha['titulo'] . "'><b><i><button class='but'type='submit' ><img src='https://img.icons8.com/ios/30/000000/connection-status-off.png'/></button></i></b></form><br>";
 
-            echo "<form method='POST' action='phpfav.php?titulo=" . $linha['titulo'] . "'><b><i> <input class='botao_fav' type='submit' value='Favoritar'</i></b></form><br>";
+            echo "<form method='POST' action='phpfav.php?titulo=" . $linha['titulo'] . "'><b><i> <button class='but'type='submit' ><img src='https://img.icons8.com/ios/30/000000/favorites.png'/></button></i></b></form><br>";
 
             echo "<br><label><b><i>Categoria:  " . $linha['filtro'] . "</i></b><br><br></label>";
 

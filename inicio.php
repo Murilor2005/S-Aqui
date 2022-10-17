@@ -294,7 +294,20 @@ if (!isset($_SESSION['nome'])) {
     }
     .img
     {
-        border-radius: 100%;
+        border-radius: 50%;
+    }
+
+    .but{
+        background-color: #f4e19b;
+        left:20%;
+        border-color:#3d150b;
+        border-radius: 30%;
+    }
+
+    .but:hover{
+        transition: 0.7s;
+        background-color:#96541e;
+        border-color: #f4e19b;
     }
 </style>
 
@@ -318,7 +331,7 @@ if (!isset($_SESSION['nome'])) {
             <form method="POST" action="buscar.php">
                 <ul id="pesquisa">
                     <li><a href="#"><input type="text" name="pesquisa" placeholder="Qual publicação você deseja buscar?"></a></li>
-                    <li><a href="#"><input type="submit" name="botaoPesq" value="Buscar"></a></li>
+                    <li><a href="#"><button type="submit" class="but" name="botaoPesq"><img src="https://img.icons8.com/pastel-glyph/32/000000/search--v1.png" /></button></a></li>
                 </ul>
             </form>
         </nav>
@@ -328,7 +341,7 @@ if (!isset($_SESSION['nome'])) {
             $fotous = $_SESSION['foto'];
 
             echo "<input type='checkbox' id='check'>
-            <label for='check'><a>$nomeus</a><img class='img' width='50px' src='data:image/jpeg;base64,$fotous' /></label>";
+            <label for='check'><a>$nomeus</a><img class='img' width='45px' src='data:image/jpeg;base64,$fotous' /></label>";
             ?>
             <ul id="perfil">
                 <li><a href="verFavoritos.php">Meus favoritos ❣</a></li>
@@ -376,11 +389,11 @@ if (!isset($_SESSION['nome'])) {
 
                 . html_entity_decode($linha["conteudo"]) . '';
 
-            echo "<form class='alinhalado' method='POST' action='visucomp.php?titulo=" . $linha['titulo'] . "'><b><i> <input class='botao_fav' type='submit' value='Ver mais'</i></b></form>";
+                echo "<br><form class='bots2' method='POST' action='visucomp.php?titulo=" . $linha['titulo'] . "'><b><i> <button class='but'type='submit' ><img src='https://img.icons8.com/ios/30/000000/connection-status-off.png'/></button></i></b></form>";
 
-            echo "<form class='bots1' method='POST' action='editar.php?titulo=" . $linha['titulo'] . "'><b><i> <input class='botao_fav' type='submit' value='Editar'</i></b></form>";
+            echo "<br><form class='bots2' method='POST' action='editar.php?titulo=" . $linha['titulo'] . "'><b><i> <button class='but'type='submit' ><img src='https://img.icons8.com/ios-filled/30/000000/pencil-tip.png'/></button></i></b></form>";
 
-            echo "<br><form class='bots2' method='POST' onClick='msg()' action='excluir.php?titulo=" . $linha['titulo'] . "'><b><i> <input class='botao_fav' type='submit' value='Excluir'</i></b></form>";
+            echo "<br><form class='bots2' method='POST' onClick='msg()' action='excluir.php?titulo=" . $linha['titulo'] . "'><b><i> <button class='but'type='submit' ><img src='https://img.icons8.com/ios-glyphs/30/000000/delete.png'/></button></i></b></form>";
 
             echo "<br><label><b><i>Visualização: <u> " . $linha['visu'] . "</u></i></b><br><br></label>";
 

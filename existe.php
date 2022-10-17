@@ -132,7 +132,7 @@ session_start();
         #cadastro {
             display: block;
             align-items: center;
-            margin-left: 10px;
+            margin-left: 40px;
         }
 
         .opc {
@@ -141,6 +141,19 @@ session_start();
             text-align: center;
             position: relative;
         }
+
+        .but {
+        background-color: #f4e19b;
+        left: 20%;
+        border-color: #3d150b;
+        border-radius: 30%;
+    }
+
+    .but:hover {
+        transition: 0.7s;
+        background-color: #96541e;
+        border-color: #f4e19b;
+    }
     </style>
 </head>
 
@@ -151,9 +164,8 @@ session_start();
             <div id="bloco">
                 <div id="cadastro">
                     <br>
-
                     <p>Clique abaixo para voltar para as Publicações!</p>
-                    <a href="publica.php" id="forgot-pass">Clique aqui para voltar a página de Publicações!</a>
+                    <a href="publica.php" id="forgot-pass"><img src='https://img.icons8.com/ios-filled/30/000000/left3.png'/></a>
                 </div>
             </div>
             <br>

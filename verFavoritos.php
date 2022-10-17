@@ -293,6 +293,19 @@ if (!isset($_SESSION['nome'])) {
     {
         border-radius: 100%;
     }
+
+    .but{
+        background-color: #f4e19b;
+        left:20%;
+        border-color:#3d150b;
+        border-radius: 30%;
+    }
+
+    .but:hover{
+        transition: 0.7s;
+        background-color:#96541e;
+        border-color: #f4e19b;
+    }
 </style>
 
 <body>
@@ -315,7 +328,7 @@ if (!isset($_SESSION['nome'])) {
             <form method="POST" action="buscar.php">
                 <ul id="pesquisa">
                     <li><a href="#"><input type="text" name="pesquisa" placeholder="Qual publicação você deseja buscar?"></a></li>
-                    <li><a href="#"><input type="submit" name="botaoPesq" value="Buscar"></a></li>
+                    <li><a href="#"><button type="submit" class="but" name="botaoPesq"><img src="https://img.icons8.com/pastel-glyph/32/000000/search--v1.png" /></button></a></li>
                 </ul>
             </form>
         </nav>
@@ -369,20 +382,15 @@ if (!isset($_SESSION['nome'])) {
 
         while ($linha = mysqli_fetch_assoc($resultado)) {
 
-            // if(!isset($resultado))
-            //{
-            //  echo "<div class='nexis'>Não possui Favoritos!</div>";
-            //}  
-
             echo '<div class="boxpai"><div class="box"><label>';
 
             echo "<h1><b><i> " . $linha["titulo"] . "   </i></b></h1></label>"
 
                 . html_entity_decode($linha["conteudo"]) . '';
 
-            echo "<form class='alinhalado' method='POST' action='visucomp.php?titulo=" . $linha['titulo'] . "'><b><i> <input class='botao_fav' type='submit' value='Ver mais'</i></b></form>";
-
-            echo "<form method='POST' action='phpremfav.php?titulo=" . $linha['titulo'] . "'><b><i> <input class='botao_fav' type='submit' value='Desfavoritar'</i></b></form><br>";
+            echo "<form class='alinhalado' method='POST' action='visucomp.php?titulo=" . $linha['titulo'] . "'><b><i> <button class='but'type='submit' ><img src='https://img.icons8.com/ios/30/000000/connection-status-off.png'/></button></i></b></form><br>";
+               
+            echo "<form method='POST' action='phpremfav.php?titulo=" . $linha['titulo'] . "'><b><i> <button class='but'type='submit' ><img src='https://img.icons8.com/ios-filled/30/000000/favorites.png'/></button></i></b></form><br>";
 
             echo "<br><label><b><i>Categoria: <u> " . $linha['filtro'] . "</u></i></b><br><br></label>";
 

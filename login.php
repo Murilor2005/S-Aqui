@@ -152,7 +152,7 @@
                 <label for="senha">Senha: </label>
                 <input class="inp" type="password" name="senha" required minlength="8" placeholder="Digite aqui sua senha"><br>
                 <span class="icon">
-                    <button class="mostrarSenha" type="button" id="mostrasenha">Mostrar senha!</button>
+                    <button class="mostrarSenha" type="button" id="mostrasenha"><img src="https://img.icons8.com/windows/32/000000/show-password.png"/></button>
                 </span>
                 </div>
                 <input type="submit" name="botao" value="Logar">
