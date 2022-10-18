@@ -121,7 +121,7 @@ session_start();
             <label for="user">Nome: </label>
             <input class="inp" type="name" name="nome" required minlength="5" placeholder="Digite aqui seu nome e sobrenome"><br>
             <label for="user">E-mail: </label>
-            <input class="inp" type="email" name="email" placeholder="Digite aqui a sua palavra-chave!" required><br>
+            <input class="inp" type="email" name="email" placeholder="Digite aqui seu e-mail!" required><br>
             <label for="user">Senha: </label>
             <input class="inp" type="password" name="senha" required minlength="8" placeholder="Digite aqui sua senha(Mínimo 8 digitos)"><br>
             <label for="user">Insira uma foto de perfil: </label>

@@ -374,7 +374,7 @@ if (!isset($_SESSION['nome'])) {
 
         $conexao = mysqli_connect("localhost", "root", "", "localhost");
 
-        $sql = "SELECT * FROM publicacao p inner join favoritas f on p.titulo = f.titulo WHERE f.user='$nomeus' ";
+        $sql = "SELECT * FROM publicacao p inner join favoritas f on p.titulo = f.titulo WHERE f.user='$nomeus' AND visu='Pública' ";
 
         $resultado = mysqli_query($conexao, $sql);
 

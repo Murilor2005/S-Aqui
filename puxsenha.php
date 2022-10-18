@@ -120,20 +120,52 @@ session_start();
 
         <?php
 
-
         $conexao = mysqli_connect("localhost", "root", "", "localhost");
 
+        $chave = filter_input(INPUT_GET, 'chave');
+
+        if (!empty($chave)) {
+
+            $query_chave = "SELECT nome FROM cadastros WHERE recuperar_senha = '$chave'";
+            $query_resultado = mysqli_query($conexao, $query_chave);
+
+            if (mysqli_num_rows($query_resultado) != 0) {
+                $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+                $row_usuario = mysqli_fetch_row($query_resultado);
+                if (!empty($dados['botenv'])) {
+                    if ((isset($_POST["senhanov"]))) {
+                        //atribuindo o array a variável
+                        $senha = $_POST["senhanov"];
+
+                        $senhacrip = base64_encode($senha);
+
+                        //$senha_user = password_hash($senha, PASSWORD_DEFAULT);
+                        if (($senha > 0)) {
+
+                            $sql = "UPDATE cadastros SET senha = '$senhacrip', recuperar_senha = 'NULL' WHERE nome = '$row_usuario[0]'";
+                            $consulta = mysqli_query($conexao, $sql);
+                            $_SESSION["acerto"] = "Sucesso senha!";
+                            header("location: login.php");
+                        }
+                    }
+                }
+            } else {
+                $_SESSION["mens"] = "Link inválido!";
+                header("location: recuperarSenha.php");
+            }
+        } else {
+            $_SESSION["mens"] = "Link inválido!";
+            header("location: recuperarSenha.php");
+        }
 
 
-
-        echo "<form action='phpupsenha.php' method='POST'> Insira a sua nova senha:<input type='password' required name='senhanov'><input type='submit' value='Cadastrar senha'></form>";
-
-
-
-
-
-        mysqli_close($conexao);
         ?>
+
+
+        <form  method='POST'> Insira a sua nova senha:<input type='password' required name='senhanov'><input type='submit' name='botenv' value='Cadastrar senha'></form>
+
+
 
 
         <a href="login.php" id="forgot-pass">Clique aqui para retornar ao login!</a>

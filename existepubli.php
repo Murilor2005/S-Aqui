@@ -1,14 +1,12 @@
 <?php
 session_start();
-
-session_destroy();
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>Já existe!</title>
     <style>
         /*geral*/
         * {
@@ -112,20 +110,6 @@ session_destroy();
             margin-bottom: 10px;
         }
 
-        .mostrarSenha {
-            background-color: #f4e19b;
-            color: #96541e;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 10px;
-        }
-
-        .mostrarSenha:hover {
-            transition: all .7s;
-            background-color: #96541e;
-            color: #f4e19b;
-        }
-
         .erro {
             background-color: red;
             color: white;
@@ -134,20 +118,7 @@ session_destroy();
             border: 2px solid red;
             border-radius: 10px;
             position: absolute;
-            top: 80%;
-            left: 46%;
-            width: fit-content;
-        }
-
-        .acerto {
-            background-color: green;
-            color: white;
-            font-weight: bold;
-            padding: 2px;
-            border: 2px solid green;
-            border-radius: 10px;
-            position: absolute;
-            top: 80%;
+            top: 364px;
             left: 46%;
             width: fit-content;
         }
@@ -160,69 +131,36 @@ session_destroy();
 
         #cadastro {
             display: block;
+            align-items: center;
+            margin-left: 10px;
+        }
+
+        .opc {
+            color: #96541e;
+            font-size: large;
+            text-align: center;
+            position: relative;
         }
     </style>
 </head>
 
 <body>
     <div id="login">
-        <h2>Faça login, e começe a adquirir conhecimento hoje!</h2>
-
-        <?php
-
-        if (isset($_SESSION['acerto'])) {
-            echo '<div><label class="acerto">Senha alterada</label></div>';
-
-            $_SESSION['acerto'] = NULL;
-        }
-
-
-        ?>
-        <form method="POST" action="loginins.php">
-            <label for="user">E-mail: </label>
-            <input class="inp" type="email" name="email" required minlength="5" placeholder="Digite aqui seu email(Exemplo: email@gmail.com)"><br>
-            <div class="inpsenha">
-                <label for="senha">Senha: </label>
-                <input class="inp" type="password" name="senha" required minlength="8" placeholder="Digite aqui sua senha"><br>
-                <span class="icon">
-                    <button class="mostrarSenha" type="button" id="mostrasenha"><img src="https://img.icons8.com/windows/32/000000/show-password.png" /></button>
-                </span>
-            </div>
-            <input type="submit" name="botao" value="Logar">
+        <h2>Este titulo já foi utilizado!</h2>
+        <form>
             <div id="bloco">
                 <div id="cadastro">
-                    <p>Deseja fazer cadastro?</p>
-                    <a href="cadastro.php" id="forgot-pass">Clique aqui para se cadastrar</a>
+                    <br>
+
+                    <p>Clique abaixo para voltar para voltar as publicações!</p>
+                    <a href="publica.php" id="forgot-pass">Clique aqui para voltar a página de Feed!</a>
                 </div>
-                <a href="recuperarSenha.php" id="recupera">Esqueceu sua senha?</a>
             </div>
             <br>
 
         </form>
 
     </div>
-    <?php
-
-    if (isset($_SESSION["msg"])) {
-        echo '<div><label class="erro">Login Incorreto!</label></div>';
-
-        $_SESSION["msg"] = null;
-    }
-    ?>
-
-    <script>
-        const senha = document.querySelector("input[name=senha]");
-        const but = document.querySelector("#mostrasenha");
-        console.log(senha, but);
-
-        but.addEventListener('click', () => {
-            if (senha.type === 'password') {
-                senha.type = 'text';
-            } else {
-                senha.type = 'password';
-            }
-        })
-    </script>
 </body>
 
 </html>

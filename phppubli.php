@@ -33,6 +33,28 @@ if($conexao)
 else
  echo "Error";
 
+ $resultado = "SELECT * from publicacao WHERE titulo='$titulo'";
+
+$query = mysqli_query($conexao, $resultado);
+
+$row_cnt = mysqli_num_rows($query);
+
+if ($row_cnt == 0) {
+
+    $sql = "INSERT INTO Publicacao (titulo, conteudo, autor, foto_autor, visu, filtro, datee, video, partitura, cifra) VALUES ('$titulo', '$editor_data', '$nomeus', '$fotous', '$pubpri', '$fil', '$data','$video', '$conteudoPartitura', '$conteudoCifra');";
+
+   mysqli_query($conexao, $sql);
+
+   mysqli_close($conexao);
+
+   header("location:publica.php");
+} 
+
+else if ($row_cnt >= 1) {
+   echo "<br><br>Já foi adicionada!";
+   header("location:existepubli.php");
+}
+
 $sql = "INSERT INTO Publicacao (titulo, conteudo, autor, foto_autor, visu, filtro, datee, video, partitura, cifra) VALUES ('$titulo', '$editor_data', '$nomeus', '$fotous', '$pubpri', '$fil', '$data','$video', '$conteudoPartitura', '$conteudoCifra');";
 
 mysqli_query($conexao, $sql);
